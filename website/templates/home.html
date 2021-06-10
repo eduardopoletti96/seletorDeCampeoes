@@ -1,0 +1,538 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="5" style="text-align: center;">Banimentos da equipe aliada</th>
+            </tr>
+            <tr>
+                <th style="text-align: center;" scope="col">1º ban</th>
+                <th style="text-align: center;" scope="col">2º ban</th>
+                <th style="text-align: center;" scope="col">3º ban</th>
+                <th style="text-align: center;" scope="col">4º ban</th>
+                <th style="text-align: center;" scope="col">5º ban</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    <input class="form-control" list="champions" name="banned_champion1" id="banned_champion1">
+                </th>
+                <th>
+                    <input class="form-control" list="champions" name="banned_champion2" id="banned_champion2">
+                </th>
+                <th>
+                    <input class="form-control" list="champions" name="banned_champion3" id="banned_champion3">
+                </th>
+                <th>
+                    <input class="form-control" list="champions" name="banned_champion4" id="banned_champion4">
+                </th>
+                <th>
+                    <input class="form-control" list="champions" name="banned_champion5" id="banned_champion5">
+                </th>
+            </tr>
+            <tr>
+                <th colspan="5" style="text-align: center;">Banimentos da equipe inimiga</th>
+            </tr>
+            <tr>
+                <th style="text-align: center;" scope="col">1º ban</th>
+                <th style="text-align: center;" scope="col">2º ban</th>
+                <th style="text-align: center;" scope="col">3º ban</th>
+                <th style="text-align: center;" scope="col">4º ban</th>
+                <th style="text-align: center;" scope="col">5º ban</th>
+            </tr>
+            <tr>
+                <th>
+                    <input class="form-control" list="champions" name="banned_champion6" id="banned_champion6">
+                </th>
+                <th>
+                    <input class="form-control" list="champions" name="banned_champion7" id="banned_champion7">
+                </th>
+                <th>
+                    <input class="form-control" list="champions" name="banned_champion8" id="banned_champion8">
+                </th>
+                <th>
+                    <input class="form-control" list="champions" name="banned_champion9" id="banned_champion9">
+                </th>
+                <th>
+                    <input class="form-control" list="champions" name="banned_champion10" id="banned_champion10">
+                </th>
+            </tr>
+            <tr>
+                <th style="text-align: center; color: blue;" scope="col">Equipe aliada</th>
+                <th colspan="3"></th>
+                <th style="text-align: center; color: red; " scope="col">Equipe inimiga</th>
+            </tr>
+
+            <tr>
+                <th style="text-align: center;" scope="col">Topo</th>
+                <th rowspan="2" style="text-align: left;">
+                    <img src="static/RandomSquare.png" id="img_champion1" class="img-fluid" alt="Campeão aliado do topo"
+                        width="100" height="100">
+                </th>
+                <th style="text-align: center;" scope="col">Selecione sua Rota</th>
+                <th rowspan="2" style="text-align: right;">
+                    <img src="static/RandomSquare.png" id="img_champion6" class="img-fluid" alt="Primeiro campeão inimigo"
+                        width="100" height="100">
+                </th>
+                <th style="text-align: center;" scope="col">Primeiro campeão</th>
+            </tr>
+            <tr>
+                <th>
+                    <input class="form-control" list="champions" name="picked_champion1" id="picked_champion1"
+                        onchange="changeFirstChampion()" readonly="true">
+                </th>
+                <th><input class="form-control" list="rotas" name="selected_lane" id="selected_lane" onchange="selectedLane()"></th>
+                <th><input class="form-control" list="champions" name="picked_champion6" id="picked_champion6"
+                        onchange="changeSixthChampion()" readonly="true"></th>
+            </tr>
+
+            <tr>
+                <th style="text-align: center;" scope="col">Selva</th>
+                <th rowspan="2" style="text-align: left;">
+                    <img src="static/RandomSquare.png" id="img_champion2" class="img-fluid" alt="Campeão aliado da selva"
+                        width="100" height="100">
+                </th>
+                <th></th>
+                <th rowspan="2" style="text-align: right;">
+                    <img src="static/RandomSquare.png" id="img_champion7" class="img-fluid" alt="Segundo campeão inimigo"
+                        width="100" height="100">
+                </th>
+                <th style="text-align: center;" scope="col">Segundo campeão</th>
+            </tr>
+            <tr>
+                <th>
+                    <input class="form-control" list="champions" name="picked_champion2" id="picked_champion2"
+                        onchange="changeSecondChampion()" readonly="true">
+                </th>
+                <th></th>
+                <th><input class="form-control" list="champions" name="picked_champion7" id="picked_champion7"
+                        onchange="changeSeventhChampion()" readonly="true"></th>
+            </tr>
+
+            <tr>
+                <th style="text-align: center;" scope="col">Meio</th>
+                <th rowspan="2" style="text-align: left;">
+                    <img src="static/RandomSquare.png" id="img_champion3" class="img-fluid" alt="Campeão aliado do meio"
+                        width="100" height="100">
+                </th>
+                <th></th>
+                <th rowspan="2" style="text-align: right;">
+                    <img src="static/RandomSquare.png" id="img_champion8" class="img-fluid" alt="Terceiro campeão inimigo"
+                        width="100" height="100">
+                </th>
+                <th style="text-align: center;" scope="col">Terceiro campeão</th>
+            </tr>
+            <tr>
+                <th>
+                    <input class="form-control" list="champions" name="picked_champion3" id="picked_champion3"
+                        onchange="changeThirdChampion()" readonly="true">
+                </th>
+                <th></th>
+                <th><input class="form-control" list="champions" name="picked_champion8" id="picked_champion8"
+                        onchange="changeEigthChampion()" readonly="true"></th>
+            </tr>
+
+            <tr>
+                <th style="text-align: center;" scope="col">Atirador</th>
+                <th rowspan="2" style="text-align: left;">
+                    <img src="static/RandomSquare.png" id="img_champion4" class="img-fluid" alt="Campeão aliado atirador"
+                        width="100" height="100">
+                </th>
+                <th></th>
+                <th rowspan="2" style="text-align: right;">
+                    <img src="static/RandomSquare.png" id="img_champion9" class="img-fluid" alt="Quarto campeão inimigo"
+                        width="100" height="100">
+                </th>
+                <th style="text-align: center;" scope="col">Quarto campeão</th>
+            </tr>
+            <tr>
+                <th>
+                    <input class="form-control" list="champions" name="picked_champion4" id="picked_champion4"
+                        onchange="changeFourthChampion()" readonly="true">
+                </th>
+                <th></th>
+                <th><input class="form-control" list="champions" name="picked_champion9" id="picked_champion9"
+                        onchange="changeNinthChampion()" readonly="true"></th>
+            </tr>
+
+            <tr>
+                <th style="text-align: center;" scope="col">Suporte</th>
+                <th rowspan="2" style="text-align: left;">
+                    <img src="static/RandomSquare.png" id="img_champion5" class="img-fluid" alt="Campeão aliado suporte"
+                        width="100" height="100">
+                </th>
+                <th></th>
+                <th rowspan="2" style="text-align: right;">
+                    <img src="static/RandomSquare.png" id="img_champion10" class="img-fluid" alt="Quinto campeão inimigo"
+                        width="100" height="100">
+                </th>
+                <th style="text-align: center;" scope="col">Quinto campeão</th>
+            </tr>
+            <tr>
+                <th>
+                    <input class="form-control" list="champions" name="picked_champion5" id="picked_champion5"
+                        onchange="changeFifthChampion()" readonly="true">
+                </th>
+                <th style="text-align: center;"> <button class="btn btn-primary" onclick="predictChampions()">Realizar Seleção</button></th>
+                <th><input class="form-control" list="champions" name="picked_champion10" id="picked_champion10"
+                        onchange="changeTenthChampion()" readonly="true">
+                </th>
+            </tr>
+            <tr>
+                <th style="text-align: center;" scope="col" id="first_prediction">Primeira Indicação</th>
+                <th style="text-align: center;" scope="col" id="second_prediction">Segunda Indicação</th>
+                <th style="text-align: center;" scope="col" id="third_prediction">Terceira Indicação</th>
+                <th style="text-align: center;" scope="col" id="fourth_prediction">Quarta Indicação</th>
+                <th style="text-align: center;" scope="col" id="fifth_prediction">Quinta Indicação</th>
+            </tr>
+            <tr></tr>>
+            <tr>
+                <th style="text-align: center;">
+                    <img src="static/RandomSquare.png" id="predicted_champion1" class="img-fluid" alt="Primeiro campeão sugerido"
+                    width="100" height="100" >
+                </th>
+                <th style="text-align: center;">
+                    <img src="static/RandomSquare.png" id="predicted_champion2" class="img-fluid" alt="Segundo campeão sugerido"
+                        width="100" height="100">
+                </th>
+                <th style="text-align: center;">
+                    <img src="static/RandomSquare.png" id="predicted_champion3" class="img-fluid" alt="Terceiro campeão sugerido"
+                        width="100" height="100">
+                </th>
+                <th style="text-align: center;">
+                    <img src="static/RandomSquare.png" id="predicted_champion4" class="img-fluid" alt="Quarto campeão sugerido"
+                        width="100" height="100">
+                </th>
+                <th style="text-align: center;">
+                    <img src="static/RandomSquare.png" id="predicted_champion5" class="img-fluid" alt="Quinto campeão sugerido"
+                        width="100" height="100">
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<html>
+
+<head>
+    <script>
+
+        function changeFirstChampion() {
+            var first_champ_name = document.getElementById("picked_champion1").value;
+            var first_champ_img = "static/" + first_champ_name + "Square.png";
+            document.getElementById("img_champion1").src = first_champ_img;
+        }
+
+        function changeSecondChampion() {
+            var second_champ_name = document.getElementById("picked_champion2").value;
+            var second_champ_img = "static/" + second_champ_name + "Square.png";
+            document.getElementById("img_champion2").src = second_champ_img;
+        }
+
+        function changeThirdChampion() {
+            var third_champ_name = document.getElementById("picked_champion3").value;
+            var third_champ_img = "static/" + third_champ_name + "Square.png";
+            document.getElementById("img_champion3").src = third_champ_img;
+        }
+
+        function changeFourthChampion() {
+            var fourth_champ_name = document.getElementById("picked_champion4").value;
+            var fourth_champ_img = "static/" + fourth_champ_name + "Square.png";
+            document.getElementById("img_champion4").src = fourth_champ_img;
+        }
+
+        function changeFifthChampion() {
+            var fifth_champ_name = document.getElementById("picked_champion5").value;
+            var fifth_champ_img = "static/" + fifth_champ_name + "Square.png";
+            document.getElementById("img_champion5").src = fifth_champ_img;
+        }
+
+        function changeSixthChampion() {
+            var sixth_champ_name = document.getElementById("picked_champion6").value;
+            var sixth_champ_img = "static/" + sixth_champ_name + "Square.png";
+            document.getElementById("img_champion6").src = sixth_champ_img;
+        }
+
+        function changeSeventhChampion() {
+            var seventh_champ_name = document.getElementById("picked_champion7").value;
+            var seventh_champ_img = "static/" + seventh_champ_name + "Square.png";
+            document.getElementById("img_champion7").src = seventh_champ_img;
+        }
+
+        function changeEigthChampion() {
+            var eigth_champ_name = document.getElementById("picked_champion8").value;
+            var eigth_champ_img = "static/" + eigth_champ_name + "Square.png";
+            document.getElementById("img_champion8").src = eigth_champ_img;
+        }
+
+        function changeNinthChampion() {
+            var ninth_champ_name = document.getElementById("picked_champion9").value;
+            var ninth_champ_img = "static/" + ninth_champ_name + "Square.png";
+            document.getElementById("img_champion9").src = ninth_champ_img;
+        }
+
+        function changeTenthChampion() {
+            var tenth_champ_name = document.getElementById("picked_champion10").value;
+            var tenth_champ_img = "static/" + tenth_champ_name + "Square.png";
+            document.getElementById("img_champion10").src = tenth_champ_img;
+        }
+
+        function selectedLane() {
+            $('#picked_champion1').attr('readonly', false);
+            $('#picked_champion2').attr('readonly', false);
+            $('#picked_champion3').attr('readonly', false);
+            $('#picked_champion4').attr('readonly', false);
+            $('#picked_champion5').attr('readonly', false);
+            $('#picked_champion6').attr('readonly', false);
+            $('#picked_champion7').attr('readonly', false);
+            $('#picked_champion8').attr('readonly', false);
+            $('#picked_champion9').attr('readonly', false);
+            $('#picked_champion10').attr('readonly', false);
+
+            var selected_lane = document.getElementById("selected_lane").value;
+            if(selected_lane == "Topo") {
+                $('#picked_champion1').attr('readonly', true);
+            } else if (selected_lane == "Selva") {
+                $('#picked_champion2').attr('readonly', true);
+            } else if (selected_lane == "Meio") {
+                $('#picked_champion3').attr('readonly', true);
+            } else if (selected_lane == "Atirador") {
+                $('#picked_champion4').attr('readonly', true);
+            } else if (selected_lane == "Suporte") {
+                $('#picked_champion5').attr('readonly', true);
+            }
+        }
+
+        function predictChampions() {
+            fetch("/predict-champions", {
+                method: "POST",
+                body: JSON.stringify({ bannedChampion1: document.getElementById("banned_champion1").value,
+                                       bannedChampion2: document.getElementById("banned_champion2").value,
+                                       bannedChampion3: document.getElementById("banned_champion3").value,
+                                       bannedChampion4: document.getElementById("banned_champion4").value,
+                                       bannedChampion5: document.getElementById("banned_champion5").value,
+                                       bannedChampion6: document.getElementById("banned_champion6").value,
+                                       bannedChampion7: document.getElementById("banned_champion7").value,
+                                       bannedChampion8: document.getElementById("banned_champion8").value,
+                                       bannedChampion9: document.getElementById("banned_champion9").value,
+                                       bannedChampion10: document.getElementById("banned_champion10").value,
+                                       selectedLane: document.getElementById("selected_lane").value,
+                                       pickedChampion1: document.getElementById("picked_champion1").value,
+                                       pickedChampion2: document.getElementById("picked_champion2").value,
+                                       pickedChampion3: document.getElementById("picked_champion3").value,
+                                       pickedChampion4: document.getElementById("picked_champion4").value,
+                                       pickedChampion5: document.getElementById("picked_champion5").value,
+                                       pickedChampion6: document.getElementById("picked_champion6").value,
+                                       pickedChampion7: document.getElementById("picked_champion7").value,
+                                       pickedChampion8: document.getElementById("picked_champion8").value,
+                                       pickedChampion9: document.getElementById("picked_champion9").value,
+                                       pickedChampion10: document.getElementById("picked_champion10").value}),
+            })
+            .then(function (response) {
+                if (response.status !== 200) {
+                    console.log('There was a problem. Status code: ${response.status}');
+                    return;
+                }
+                response.json().then(function(data) {
+                    console.log(data);
+                    console.log(data[0]['champion']);
+                    var first_pred_champion = data[0]['champion'];
+                    var first_pred_img = "static/" + first_pred_champion + "Square.png";
+                    document.getElementById("predicted_champion1").src = first_pred_img;
+
+                    var second_pred_champion = data[1]['champion'];
+                    var second_pred_img = "static/" + second_pred_champion + "Square.png";
+                    document.getElementById("predicted_champion2").src = second_pred_img;
+
+                    var third_pred_champion = data[2]['champion'];
+                    var third_pred_img = "static/" + third_pred_champion + "Square.png";
+                    document.getElementById("predicted_champion3").src = third_pred_img;
+
+                    var fourth_pred_champion = data[3]['champion'];
+                    var fourth_pred_img = "static/" + fourth_pred_champion + "Square.png";
+                    document.getElementById("predicted_champion4").src = fourth_pred_img;
+
+                    var fifth_pred_champion = data[4]['champion'];
+                    var fifth_pred_img = "static/" + fifth_pred_champion + "Square.png";
+                    document.getElementById("predicted_champion5").src = fifth_pred_img;
+                });
+            })
+            .catch(function(error) {
+                console.log("Fetch error: " + error);
+            });
+        }
+
+    </script>
+</head>
+
+</html>
+
+<datalist id="rotas">
+    <option value="Topo"></option>
+    <option value="Selva"></option>
+    <option value="Meio"></option>
+    <option value="Atirador"></option>
+    <option value="Suporte"></option>
+</datalist>
+
+<datalist id="champions">
+    <option value="Não definido"></option>
+    <option value="Aatrox"></option>
+    <option value="Ahri"></option>
+    <option value="Akali"></option>
+    <option value="Alistar"></option>
+    <option value="Amumu"></option>
+    <option value="Anivia"></option>
+    <option value="Annie"></option>
+    <option value="Aphelios"></option>
+    <option value="Ashe"></option>
+    <option value="AurelionSol"></option>
+    <option value="Azir"></option>
+    <option value="Bard"></option>
+    <option value="Blitzcrank"></option>
+    <option value="Brand"></option>
+    <option value="Braum"></option>
+    <option value="Caitlyn"></option>
+    <option value="Camille"></option>
+    <option value="Cassiopeia"></option>
+    <option value="Chogath"></option>
+    <option value="Corki"></option>
+    <option value="Darius"></option>
+    <option value="Diana"></option>
+    <option value="Draven"></option>
+    <option value="DrMundo"></option>
+    <option value="Ekko"></option>
+    <option value="Elise"></option>
+    <option value="Evelynn"></option>
+    <option value="Ezreal"></option>
+    <option value="Fiddlesticks"></option>
+    <option value="Fiora"></option>
+    <option value="Fizz"></option>
+    <option value="Galio"></option>
+    <option value="Gangplank"></option>
+    <option value="Garen"></option>
+    <option value="Gnar"></option>
+    <option value="Gragas"></option>
+    <option value="Graves"></option>
+    <option value="Gwen"></option>
+    <option value="Hecarim"></option>
+    <option value="Heimerdinger"></option>
+    <option value="Illaoi"></option>
+    <option value="Irelia"></option>
+    <option value="Ivern"></option>
+    <option value="Janna"></option>
+    <option value="JarvanIV"></option>
+    <option value="Jax"></option>
+    <option value="Jayce"></option>
+    <option value="Jhin"></option>
+    <option value="Jinx"></option>
+    <option value="Kaisa"></option>
+    <option value="Kalista"></option>
+    <option value="Karma"></option>
+    <option value="Karthus"></option>
+    <option value="Kassadin"></option>
+    <option value="Katarina"></option>
+    <option value="Kayle"></option>
+    <option value="Kayn"></option>
+    <option value="Kennen"></option>
+    <option value="Khazix"></option>
+    <option value="Kindred"></option>
+    <option value="Kled"></option>
+    <option value="KogMaw"></option>
+    <option value="Leblanc"></option>
+    <option value="LeeSin"></option>
+    <option value="Leona"></option>
+    <option value="Lillia"></option>
+    <option value="Lissandra"></option>
+    <option value="Lucian"></option>
+    <option value="Lulu"></option>
+    <option value="Lux"></option>
+    <option value="Malphite"></option>
+    <option value="Malzahar"></option>
+    <option value="Maokai"></option>
+    <option value="MasterYi"></option>
+    <option value="MissFortune"></option>
+    <option value="Mordekaiser"></option>
+    <option value="Morgana"></option>
+    <option value="Nami"></option>
+    <option value="Nasus"></option>
+    <option value="Nautilus"></option>
+    <option value="Neeko"></option>
+    <option value="Nidalee"></option>
+    <option value="Nocturne"></option>
+    <option value="Nunu"></option>
+    <option value="Olaf"></option>
+    <option value="Orianna"></option>
+    <option value="Ornn"></option>
+    <option value="Pantheon"></option>
+    <option value="Poppy"></option>
+    <option value="Pyke"></option>
+    <option value="Qiyana"></option>
+    <option value="Quinn"></option>
+    <option value="Rakan"></option>
+    <option value="Rammus"></option>
+    <option value="RekSai"></option>
+    <option value="Rell"></option>
+    <option value="Renekton"></option>
+    <option value="Rengar"></option>
+    <option value="Riven"></option>
+    <option value="Rumble"></option>
+    <option value="Ryze"></option>
+    <option value="Samira"></option>
+    <option value="Sejuani"></option>
+    <option value="Senna"></option>
+    <option value="Seraphine"></option>
+    <option value="Sett"></option>
+    <option value="Shaco"></option>
+    <option value="Shen"></option>
+    <option value="Shyvana"></option>
+    <option value="Singed"></option>
+    <option value="Sion"></option>
+    <option value="Sivir"></option>
+    <option value="Skarner"></option>
+    <option value="Sona"></option>
+    <option value="Soraka"></option>
+    <option value="Swain"></option>
+    <option value="Sylas"></option>
+    <option value="Syndra"></option>
+    <option value="TahmKench"></option>
+    <option value="Taliyah"></option>
+    <option value="Talon"></option>
+    <option value="Taric"></option>
+    <option value="Teemo"></option>
+    <option value="Thresh"></option>
+    <option value="Tristana"></option>
+    <option value="Trundle"></option>
+    <option value="Tryndamere"></option>
+    <option value="TwistedFate"></option>
+    <option value="Twitch"></option>
+    <option value="Udyr"></option>
+    <option value="Urgot"></option>
+    <option value="Varus"></option>
+    <option value="Vayne"></option>
+    <option value="Veigar"></option>
+    <option value="Velkoz"></option>
+    <option value="Vi"></option>
+    <option value="Viego"></option>
+    <option value="Viktor"></option>
+    <option value="Vladimir"></option>
+    <option value="Volibear"></option>
+    <option value="Warwick"></option>
+    <option value="WuKong"></option>
+    <option value="Xayah"></option>
+    <option value="Xerath"></option>
+    <option value="XinZhao"></option>
+    <option value="Yasuo"></option>
+    <option value="Yone"></option>
+    <option value="Yorick"></option>
+    <option value="Yuumi"></option>
+    <option value="Zac"></option>
+    <option value="Zed"></option>
+    <option value="Ziggs"></option>
+    <option value="Zilean"></option>
+    <option value="Zoe"></option>
+    <option value="Zyra"></option>
+</datalist>
+{% endblock %}
